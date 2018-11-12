@@ -1,0 +1,31 @@
+http://127.0.0.1:9200/_cat/health?v    查看节点健康状态
+http://127.0.0.1:9200/_cat/nodes?v     nodes check
+http://127.0.0.1:9200/_cat/indices?v    Lis all indices
+PUT /customer?pretty         创建customer索引
+
+Index and query a document
+PUT /customer/_doc/1?pretty
+{
+  "name": "John Doe"
+}
+GET /customer/_doc/1?pretty
+
+Delete an index
+DELETE /customer?pretty
+
+If we study the above commands carefully, we can actually see a pattern of how we access data in Elasticsearch. That pattern can be summarized as follows:
+<HTTP Verb> /<Index>/<Type>/<ID>
+
+This example returns all accounts containing the term "mill" or "lane" in the address:
+
+GET /bank/_search
+{
+  "query": { "match": { "address": "mill lane" } }
+}
+COPY AS CURLVIEW IN CONSOLE 
+This example is a variant of match (match_phrase) that returns all accounts containing the phrase "mill lane" in the address:
+
+GET /bank/_search
+{
+  "query": { "match_phrase": { "address": "mill lane" } }
+}
