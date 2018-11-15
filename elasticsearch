@@ -29,3 +29,19 @@ GET /bank/_search
 {
   "query": { "match_phrase": { "address": "mill lane" } }
 }
+
+Loading sample data
+1.set up mappings
+PUT /shakespeare
+{
+ "mappings": {
+  "doc": {
+   "properties": {
+    "speaker": {"type": "keyword"},
+    "play_name": {"type": "keyword"},
+    "line_id": {"type": "integer"},
+    "speech_number": {"type": "integer"}
+   }
+  }
+ }
+}
